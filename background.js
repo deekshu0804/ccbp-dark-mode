@@ -69,22 +69,34 @@ chrome.runtime.onMessage.addListener(({ action }, sender, sendResponse) => {
             const s = document.createElement('style');
             s.id = ID;
             s.textContent = `
-                  html { 
-                    filter: invert(1) hue-rotate(180deg) !important; 
-                    transition: filter 0.3s ease; 
-                  }
-                  img, canvas, [style*="background-image"] {
-                    filter: invert(1) hue-rotate(180deg) !important;
-                  }
-                  video,
-                  iframe,
-                  [class*="video"],
-                  [class*="player"],
-                  .video-js,
-                  .vjs-tech {
-                    filter: none !important;
-                  }
-                `;
+                    html { 
+                      filter: invert(1) hue-rotate(180deg) !important; 
+                      transition: filter 0.3s ease; 
+                    }
+                    
+                    /* Video.js player - counter invert */
+                    .video-container,
+                    .video-js,
+                    .sc-bxJAf,
+                    .kTVFMt,
+                    video,
+                    .vjs-tech,
+                    .vjs-poster {
+                      filter: invert(1) hue-rotate(180deg) !important;
+                    }
+                  
+                    /* Google Slides iframe */
+                    iframe[src*="docs.google.com"],
+                    iframe[src*="slides.google"],
+                    iframe[src*="googleusercontent"] {
+                      filter: invert(1) hue-rotate(180deg) !important;
+                    }
+                  
+                    /* Any other images that get double-inverted */
+                    img {
+                      filter: invert(1) hue-rotate(180deg) !important;
+                    }
+                  `;
             
             document.documentElement.appendChild(s);
           } else {
@@ -112,23 +124,35 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
           if (document.getElementById(ID)) return;
           const s = document.createElement('style');
           s.id = ID;
-          s.textContent = `
-                  html { 
-                    filter: invert(1) hue-rotate(180deg) !important; 
-                    transition: filter 0.3s ease; 
-                  }
-                  img, canvas, [style*="background-image"] {
-                    filter: invert(1) hue-rotate(180deg) !important;
-                  }
-                  video,
-                  iframe,
-                  [class*="video"],
-                  [class*="player"],
-                  .video-js,
-                  .vjs-tech {
-                    filter: none !important;
-                  }
-                `;
+         s.textContent = `
+                      html { 
+                        filter: invert(1) hue-rotate(180deg) !important; 
+                        transition: filter 0.3s ease; 
+                      }
+                      
+                      /* Video.js player - counter invert */
+                      .video-container,
+                      .video-js,
+                      .sc-bxJAf,
+                      .kTVFMt,
+                      video,
+                      .vjs-tech,
+                      .vjs-poster {
+                        filter: invert(1) hue-rotate(180deg) !important;
+                      }
+                    
+                      /* Google Slides iframe */
+                      iframe[src*="docs.google.com"],
+                      iframe[src*="slides.google"],
+                      iframe[src*="googleusercontent"] {
+                        filter: invert(1) hue-rotate(180deg) !important;
+                      }
+                    
+                      /* Any other images that get double-inverted */
+                      img {
+                        filter: invert(1) hue-rotate(180deg) !important;
+                      }
+                    `;
           document.documentElement.appendChild(s);
         },
       }).catch(() => {});
