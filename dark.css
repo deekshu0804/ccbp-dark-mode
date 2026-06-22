@@ -1,0 +1,18 @@
+html {
+  filter: invert(1) hue-rotate(180deg) !important;
+  transition: filter 0.3s ease;
+}
+
+/* Re-invert media so they look normal */
+img,
+video,
+iframe,
+canvas,
+svg,
+[style*="background-image"],
+.video-player-container,
+[class*="video"],
+[class*="player"],
+[class*="embed"] {
+  filter: invert(1) hue-rotate(180deg) !important;
+}
