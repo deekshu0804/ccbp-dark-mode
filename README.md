@@ -13,7 +13,7 @@
 
 | Light Mode | Dark Mode |
 |:----------:|:---------:|
-| ![Light Mode](screenshots/before.png) | ![Dark Mode](screenshots/after.png) |
+| ![Light Mode](before.png) | ![Dark Mode](after.png) |
 
 ---
 
