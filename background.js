@@ -96,6 +96,13 @@ chrome.runtime.onMessage.addListener(({ action }, sender, sendResponse) => {
                     img {
                       filter: invert(1) hue-rotate(180deg) !important;
                     }
+                   /* Dim the Google Slides iframe - can't invert inside but reduce brightness */
+                    iframe[src*="docs.google.com"],
+                    iframe[src*="googleusercontent"],
+                    iframe[src*="google.com/presentation"] {
+                      opacity: 0.85 !important;
+                      filter: brightness(0.9) !important;
+                    }
                   `;
             
             document.documentElement.appendChild(s);
@@ -152,6 +159,14 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
                       img {
                         filter: invert(1) hue-rotate(180deg) !important;
                       }
+                      
+                   /* Dim the Google Slides iframe - can't invert inside but reduce brightness */
+                    iframe[src*="docs.google.com"],
+                    iframe[src*="googleusercontent"],
+                    iframe[src*="google.com/presentation"] {
+                      opacity: 0.85 !important;
+                      filter: brightness(0.9) !important;
+                    }
                     `;
           document.documentElement.appendChild(s);
         },
