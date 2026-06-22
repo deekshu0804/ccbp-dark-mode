@@ -69,12 +69,23 @@ chrome.runtime.onMessage.addListener(({ action }, sender, sendResponse) => {
             const s = document.createElement('style');
             s.id = ID;
             s.textContent = `
-              html { filter: invert(1) hue-rotate(180deg) !important; transition: filter 0.3s ease; }
-              img, video, iframe, canvas, [style*="background-image"],
-              [class*="video"], [class*="player"] {
-                filter: invert(1) hue-rotate(180deg) !important;
-              }
-            `;
+                  html { 
+                    filter: invert(1) hue-rotate(180deg) !important; 
+                    transition: filter 0.3s ease; 
+                  }
+                  img, canvas, [style*="background-image"] {
+                    filter: invert(1) hue-rotate(180deg) !important;
+                  }
+                  video,
+                  iframe,
+                  [class*="video"],
+                  [class*="player"],
+                  .video-js,
+                  .vjs-tech {
+                    filter: none !important;
+                  }
+                `;
+            
             document.documentElement.appendChild(s);
           } else {
             document.getElementById(ID)?.remove();
@@ -102,12 +113,22 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
           const s = document.createElement('style');
           s.id = ID;
           s.textContent = `
-            html { filter: invert(1) hue-rotate(180deg) !important; transition: filter 0.3s ease; }
-            img, video, iframe, canvas, [style*="background-image"],
-            [class*="video"], [class*="player"] {
-              filter: invert(1) hue-rotate(180deg) !important;
-            }
-          `;
+                  html { 
+                    filter: invert(1) hue-rotate(180deg) !important; 
+                    transition: filter 0.3s ease; 
+                  }
+                  img, canvas, [style*="background-image"] {
+                    filter: invert(1) hue-rotate(180deg) !important;
+                  }
+                  video,
+                  iframe,
+                  [class*="video"],
+                  [class*="player"],
+                  .video-js,
+                  .vjs-tech {
+                    filter: none !important;
+                  }
+                `;
           document.documentElement.appendChild(s);
         },
       }).catch(() => {});
